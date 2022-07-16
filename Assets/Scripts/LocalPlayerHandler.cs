@@ -6,6 +6,8 @@ public class LocalPlayerHandler : NetworkBehaviour
 {
     [SerializeField] private InputProvider _inputProvider;
     [SerializeField] private Movement _movement;
+    [SerializeField] private Dash _dash;
+    [SerializeField] private DashInput _dashInput;
 
     public override void OnStartLocalPlayer()
     {
@@ -16,6 +18,7 @@ public class LocalPlayerHandler : NetworkBehaviour
 
         EnableCameraFollow(cam);
         EnableMovement(cam);
+        EnableDash();
     }
 
     private void EnableCameraFollow(Camera cam)
@@ -31,5 +34,11 @@ public class LocalPlayerHandler : NetworkBehaviour
     {
         _inputProvider.Init(cam);
         _movement.enabled = true;
+    }
+
+    private void EnableDash()
+    {
+        _dash.enabled = true;
+        _dashInput.enabled = true;
     }
 }
