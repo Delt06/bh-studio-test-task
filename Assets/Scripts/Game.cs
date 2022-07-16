@@ -1,4 +1,4 @@
-﻿using Mirror;
+﻿using Networking;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +27,6 @@ public class Game : MonoBehaviour
 
     public void Restart()
     {
-        NetworkManager.singleton.ServerChangeScene(SceneManager.GetActiveScene().name);
+        GameNetworkManager.Instance.ServerChangeScene(SceneManager.GetActiveScene().name);
     }
 }

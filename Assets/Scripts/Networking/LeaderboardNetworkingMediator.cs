@@ -1,5 +1,4 @@
-﻿using Mirror;
-using ScoreSystem;
+﻿using ScoreSystem;
 using UnityEngine;
 
 namespace Networking
@@ -12,7 +11,7 @@ namespace Networking
 
         private void Start()
         {
-            _networkManager = (GameNetworkManager) NetworkManager.singleton;
+            _networkManager = GameNetworkManager.Instance;
             _networkManager.PlayerSpawned += OnPlayerSpawned;
             _networkManager.PlayerDespawned += OnPlayerDespawned;
         }

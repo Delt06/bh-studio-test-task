@@ -1,5 +1,4 @@
-﻿using Mirror;
-using Networking;
+﻿using Networking;
 using ScoreSystem;
 using UnityEngine;
 
@@ -11,13 +10,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        var gameNetworkManager = (GameNetworkManager) NetworkManager.singleton;
+        var gameNetworkManager = GameNetworkManager.Instance;
         gameNetworkManager.OnSpawnedPlayer(this);
     }
 
     private void OnDestroy()
     {
-        var gameNetworkManager = (GameNetworkManager) NetworkManager.singleton;
+        var gameNetworkManager = GameNetworkManager.Instance;
         if (gameNetworkManager != null)
             gameNetworkManager.OnDespawnedPlayer(this);
     }

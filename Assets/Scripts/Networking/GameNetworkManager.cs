@@ -5,6 +5,8 @@ namespace Networking
 {
     public class GameNetworkManager : NetworkManager
     {
+        public static GameNetworkManager Instance => (GameNetworkManager) singleton;
+
         public void OnSpawnedPlayer(Player player)
         {
             PlayerSpawned?.Invoke(player);
