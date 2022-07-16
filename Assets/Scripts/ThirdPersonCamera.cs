@@ -35,7 +35,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void HandleInput()
     {
         var xInput = Input.GetAxis("Mouse X");
-        _offsetFromTarget = Quaternion.AngleAxis(-xInput * _yawSensitivity, Vector3.up) * _offsetFromTarget;
+        _offsetFromTarget = Quaternion.AngleAxis(xInput * _yawSensitivity, Vector3.up) * _offsetFromTarget;
 
         var yInput = Input.GetAxis("Mouse Y");
         var flatForward = -_offsetFromTarget.normalized;
