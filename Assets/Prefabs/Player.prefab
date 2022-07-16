@@ -102,6 +102,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   _inputProvider: {fileID: 1619134313906336733}
+  _movement: {fileID: 6816085222610923611}
 --- !u!114 &1619134313906336733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4799211944964888977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5cd53146562a4c8895ca936d256b253f, type: 3}
   m_Name: 

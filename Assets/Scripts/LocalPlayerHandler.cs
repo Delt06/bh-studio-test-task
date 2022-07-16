@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 public class LocalPlayerHandler : NetworkBehaviour
 {
     [SerializeField] private InputProvider _inputProvider;
+    [SerializeField] private Movement _movement;
 
     public override void OnStartLocalPlayer()
     {
@@ -14,7 +15,7 @@ public class LocalPlayerHandler : NetworkBehaviour
         Assert.IsNotNull(cam);
 
         EnableCameraFollow(cam);
-        EnableMovementControls(cam);
+        EnableMovement(cam);
     }
 
     private void EnableCameraFollow(Camera cam)
@@ -26,8 +27,9 @@ public class LocalPlayerHandler : NetworkBehaviour
         thirdPersonCamera.BindTo(transform);
     }
 
-    private void EnableMovementControls(Camera cam)
+    private void EnableMovement(Camera cam)
     {
         _inputProvider.Init(cam);
+        _movement.enabled = true;
     }
 }
