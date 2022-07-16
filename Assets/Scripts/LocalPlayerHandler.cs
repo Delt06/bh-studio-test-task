@@ -5,8 +5,6 @@ using UnityEngine.Assertions;
 public class LocalPlayerHandler : NetworkBehaviour
 {
     [SerializeField] private InputProvider _inputProvider;
-    [SerializeField] private Movement _movement;
-    [SerializeField] private Dash _dash;
     [SerializeField] private DashInput _dashInput;
 
     public override void OnStartLocalPlayer()
@@ -33,12 +31,10 @@ public class LocalPlayerHandler : NetworkBehaviour
     private void EnableMovement(Camera cam)
     {
         _inputProvider.Init(cam);
-        _movement.enabled = true;
     }
 
     private void EnableDash()
     {
-        _dash.enabled = true;
         _dashInput.enabled = true;
     }
 }

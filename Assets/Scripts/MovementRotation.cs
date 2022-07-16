@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Movement))]
 public class MovementRotation : MonoBehaviour
 {
     [SerializeField] [Min(0f)] private float _speed = 1f;
     [SerializeField] [Min(0f)] private float _velocityThreshold = 0.1f;
 
+    private Movement _movement;
     private Rigidbody _rigidbody;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _movement = GetComponent<Movement>();
     }
 
     private void LateUpdate()
     {
-        var direction = _rigidbody.velocity;
+        var direction = _movement.LastDirection;
         direction.y = 0f;
         if (direction.sqrMagnitude < _velocityThreshold * _velocityThreshold) return;
 
