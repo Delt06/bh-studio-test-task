@@ -4,6 +4,7 @@ using UnityEngine.Assertions;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+    [SerializeField] private Vector3 _initialOffset;
     [SerializeField] private float _yawSensitivity = 1f;
     [SerializeField] private float _pitchSensitivity = 1f;
     [SerializeField] [Range(-90f, 90f)] private float _pitchMinAngle = -60f;
@@ -72,6 +73,6 @@ public class ThirdPersonCamera : MonoBehaviour
     public void BindTo(Transform target)
     {
         _target = target;
-        _offsetFromTarget = _transform.position - _target.position;
+        _offsetFromTarget = _initialOffset;
     }
 }
