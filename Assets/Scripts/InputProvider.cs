@@ -15,7 +15,7 @@ public class InputProvider : MonoBehaviour, IInputProvider
             var right = Flatten(_cameraTransform.right);
 
             var input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            input.Normalize();
+            input = Vector2.ClampMagnitude(input, 1);
 
             return forward * input.y + right * input.x;
         }
