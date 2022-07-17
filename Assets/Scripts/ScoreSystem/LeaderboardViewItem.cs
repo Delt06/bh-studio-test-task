@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Core;
+using TMPro;
 using UnityEngine;
 
 namespace ScoreSystem

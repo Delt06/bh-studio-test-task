@@ -1,4 +1,5 @@
-﻿using ScoreSystem;
+﻿using Core;
+using ScoreSystem;
 using UnityEngine;
 
 namespace Networking

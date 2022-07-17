@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core;
 using Mirror;
 using UnityEngine;
 
@@ -42,12 +43,10 @@ namespace ScoreSystem
         {
             foreach (var player in Players)
             {
-                if (player.Score.Value >= _scoreThreshold)
-                {
-                    _game.OnWon();
-                    Debug.Log(player + " wins");
-                    break;
-                }
+                if (player.Score.Value < _scoreThreshold) continue;
+
+                _game.OnWon(player.GetName());
+                break;
             }
         }
     }

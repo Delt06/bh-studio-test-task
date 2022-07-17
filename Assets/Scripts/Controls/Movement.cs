@@ -42,7 +42,8 @@ namespace Controls
             {
                 var direction = _inputProvider.InputDirection;
                 _direction = direction;
-                SetDirection(direction);
+                if (NetworkClient.connection.isReady)
+                    SetDirection(direction);
             }
 
             var newVelocity = _direction * _speed;
