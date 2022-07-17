@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using System.Linq;
 using ScoreSystem;
 using UnityEngine;
 
@@ -13,25 +13,27 @@ namespace Networking
         private void Start()
         {
             _networkManager = GameNetworkManager.Instance;
-            _networkManager.PlayerSpawned += OnPlayerSpawned;
-            _networkManager.PlayerDespawned += OnPlayerDespawned;
+            _networkManager.PlayersChanged += OnPlayersChanged;
         }
 
         private void OnDestroy()
         {
             if (_networkManager == null) return;
-            _networkManager.PlayerSpawned -= OnPlayerSpawned;
-            _networkManager.PlayerDespawned -= OnPlayerDespawned;
+            _networkManager.PlayersChanged -= OnPlayersChanged;
         }
 
-        private void OnPlayerSpawned(Player player)
+        private void OnPlayersChanged()
         {
-            _leaderboard.RegisterPlayer(player);
-        }
+            foreach (var leaderboardPlayer in _leaderboard.Players.ToArray())
+            {
+                if (!_networkManager.Players.Contains(leaderboardPlayer))
+                    _leaderboard.UnregisterPlayer(leaderboardPlayer);
+            }
 
-        private void OnPlayerDespawned(Player player)
-        {
-            _leaderboard.UnregisterPlayer(player);
+            foreach (var player in _networkManager.Players)
+            {
+                _leaderboard.RegisterPlayer(player);
+            }
         }
     }
 }
