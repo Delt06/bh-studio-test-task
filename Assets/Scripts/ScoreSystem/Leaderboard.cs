@@ -10,40 +10,42 @@ namespace ScoreSystem
         [SerializeField] [Min(0)] private int _scoreThreshold = 3;
         [SerializeField] private Game _game;
 
-        private readonly HashSet<Score> _scores = new HashSet<Score>();
+        public HashSet<Player> Players { get; } = new HashSet<Player>();
 
-        public void RegisterPlayer(Score score)
+        public void RegisterPlayer(Player player)
         {
-            if (_scores.Contains(score)) return;
-            _scores.Add(score);
-            score.ValueChanged += OnValueChanged;
+            if (Players.Contains(player)) return;
+            Players.Add(player);
+            player.Score.ValueChanged += OnValueChanged;
+            Changed?.Invoke();
         }
 
-        public void UnregisterPlayer(Score score)
+        public void UnregisterPlayer(Player player)
         {
-            if (!_scores.Contains(score)) return;
-            _scores.Remove(score);
-            score.ValueChanged -= OnValueChanged;
+            if (!Players.Contains(player)) return;
+            Players.Remove(player);
+            player.Score.ValueChanged -= OnValueChanged;
+            Changed?.Invoke();
         }
 
         private void OnValueChanged(object sender, EventArgs args)
         {
-            var score = (Score) sender;
-            var id = score.GetComponent<NetworkIdentity>().netId;
-            Debug.Log($"Score[{id}]={score.Value}");
+            Changed?.Invoke();
 
             if (isServer)
                 CheckWinner();
         }
 
+        public event Action Changed;
+
         private void CheckWinner()
         {
-            foreach (var score in _scores)
+            foreach (var player in Players)
             {
-                if (score.Value >= _scoreThreshold)
+                if (player.Score.Value >= _scoreThreshold)
                 {
                     _game.OnWon();
-                    Debug.Log(score + " wins");
+                    Debug.Log(player + " wins");
                     break;
                 }
             }

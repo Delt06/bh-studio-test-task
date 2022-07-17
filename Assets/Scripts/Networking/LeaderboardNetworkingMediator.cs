@@ -25,12 +25,12 @@ namespace Networking
 
         private void OnPlayerSpawned(Player player)
         {
-            _leaderboard.RegisterPlayer(player.Score);
+            _leaderboard.RegisterPlayer(player);
         }
 
         private void OnPlayerDespawned(Player player)
         {
-            _leaderboard.UnregisterPlayer(player.Score);
+            _leaderboard.UnregisterPlayer(player);
         }
     }
 }
