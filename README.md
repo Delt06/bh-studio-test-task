@@ -1,6 +1,7 @@
 # BH Studio Test Task
 
-Name: Vladislav Kantaev
+Name: Vladislav Kantaev  
+Time spent: ~10 hours
 
 > Made with Unity 2020.3.34f1
 
