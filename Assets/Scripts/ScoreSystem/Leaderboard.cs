@@ -17,7 +17,8 @@ namespace ScoreSystem
         {
             if (Players.Contains(player)) return;
             Players.Add(player);
-            player.Score.ValueChanged += OnValueChanged;
+            player.Score.ValueChanged += OnPlayerChanged;
+            player.NameChanged += OnPlayerChanged;
             Changed?.Invoke();
         }
 
@@ -25,11 +26,12 @@ namespace ScoreSystem
         {
             if (!Players.Contains(player)) return;
             Players.Remove(player);
-            player.Score.ValueChanged -= OnValueChanged;
+            player.Score.ValueChanged -= OnPlayerChanged;
+            player.NameChanged -= OnPlayerChanged;
             Changed?.Invoke();
         }
 
-        private void OnValueChanged(object sender, EventArgs args)
+        private void OnPlayerChanged()
         {
             Changed?.Invoke();
 

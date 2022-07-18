@@ -18,9 +18,9 @@ namespace ScoreSystem
 
         private void OnValueChanged()
         {
-            ValueChanged?.Invoke(this, EventArgs.Empty);
+            ValueChanged?.Invoke();
         }
 
-        public event EventHandler ValueChanged;
+        public event Action ValueChanged;
     }
 }

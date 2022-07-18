@@ -17,10 +17,15 @@ namespace ScoreSystem
             _scoreText.SetText("{0:0}", score);
         }
 
+        public void UpdateName()
+        {
+            _nameText.text = Player.GetName();
+        }
+
         public void Init(Player player)
         {
             Player = player;
-            _nameText.text = Player.GetName();
+            UpdateName();
             if (player.IsLocalPlayer)
                 SetTextColor(_localPlayerColor);
         }

@@ -36,6 +36,7 @@ namespace ScoreSystem
             }
 
             item.SetScore(player.Score.Value);
+            item.UpdateName();
         }
 
         public void DestroyItem(Player player)

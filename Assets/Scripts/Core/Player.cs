@@ -1,4 +1,6 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
+using Names;
 using Networking;
 using ScoreSystem;
 using UnityEngine;
@@ -6,14 +8,19 @@ using UnityEngine;
 namespace Core
 {
     [RequireComponent(typeof(NetworkIdentity))]
-    public class Player : MonoBehaviour
+    public class Player : NetworkBehaviour
     {
         [SerializeField] private Score _score;
+
+        [SyncVar(hook = nameof(OnNameChanged))]
+        private string _name = NameUtils.DefaultName;
 
         private NetworkIdentity _networkIdentity;
 
         public Score Score => _score;
         public bool IsLocalPlayer => _networkIdentity.isLocalPlayer;
+
+        public NetworkConnectionToClient ConnectionToClient => _networkIdentity.connectionToClient;
 
         private void Start()
         {
@@ -29,6 +36,22 @@ namespace Core
                 gameNetworkManager.OnDespawnedPlayer(this);
         }
 
-        public string GetName() => _networkIdentity.netId.ToString();
+        [Server]
+        public void SetName(string newName)
+        {
+            _name = newName;
+            NameChanged?.Invoke();
+        }
+
+        public void OnNameChanged(string oldName, string newName)
+        {
+            if (oldName == newName) return;
+            _name = newName;
+            NameChanged?.Invoke();
+        }
+
+        public event Action NameChanged;
+
+        public string GetName() => _name;
     }
 }
