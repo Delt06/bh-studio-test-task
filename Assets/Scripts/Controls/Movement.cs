@@ -29,6 +29,16 @@ namespace Controls
             }
         }
 
+        public float CurrentSpeedXZ
+        {
+            get
+            {
+                var velocity = _rigidbody.velocity;
+                velocity.y = 0f;
+                return velocity.magnitude;
+            }
+        }
+
         private void Awake()
         {
             _inputProvider = GetComponent<IInputProvider>();

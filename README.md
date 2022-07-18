@@ -6,5 +6,10 @@ Name: Vladislav Kantaev
 
 ## Dependencies
 
-- [Mirror Networking](https://mirror-networking.com/)
-- [ParallelSync](https://github.com/VeriorPies/ParrelSync)
+- [Mirror Networking](https://mirror-networking.com/);
+- [ParallelSync](https://github.com/VeriorPies/ParrelSync).
+
+
+## Graphical Assets
+
+- Models and animations from [Mixamo](https://www.mixamo.com/).
