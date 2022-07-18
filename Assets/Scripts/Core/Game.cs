@@ -22,7 +22,21 @@ namespace Core
 
         private void OnDestroy()
         {
-            Time.timeScale = 1f;
+            SetTimeScale(1f);
+        }
+
+        private void SetTimeScale(float timeScale)
+        {
+            Time.timeScale = timeScale;
+
+            if (isServer)
+                RpcSetTimeScale(timeScale);
+        }
+
+        [ClientRpc]
+        private void RpcSetTimeScale(float timeScale)
+        {
+            Time.timeScale = timeScale;
         }
 
 
@@ -30,7 +44,7 @@ namespace Core
         {
             if (State != GameState.Playing) return;
             State = GameState.Finished;
-            Time.timeScale = 0f;
+            SetTimeScale(0f);
             WinRpc(winnerName);
             StartCoroutine(RestartAfterDelay());
         }
