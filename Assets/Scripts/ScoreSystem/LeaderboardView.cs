@@ -32,11 +32,13 @@ namespace ScoreSystem
             {
                 item = _playerItems[player] = Instantiate(_leaderboardViewItemPrefab, _root);
                 item.Init(player);
+                if (player.IsLocalPlayer)
+                    item.MarkAsLocal();
                 _orderedPlayerItems.Add(item);
             }
 
-            item.SetScore(player.Score.Value);
-            item.UpdateName();
+            item.UpdateScore(player.Score.Value);
+            item.UpdateName(item.Player.Name.Get());
         }
 
         public void DestroyItem(Player player)

@@ -12,22 +12,24 @@ namespace ScoreSystem
 
         public Player Player { get; private set; }
 
-        public void SetScore(int score)
+        public void UpdateScore(int score)
         {
             _scoreText.SetText("{0:0}", score);
         }
 
-        public void UpdateName()
+        public void UpdateName(string playerName)
         {
-            _nameText.text = Player.Name.Get();
+            _nameText.text = playerName;
         }
 
         public void Init(Player player)
         {
             Player = player;
-            UpdateName();
-            if (player.IsLocalPlayer)
-                SetTextColor(_localPlayerColor);
+        }
+
+        public void MarkAsLocal()
+        {
+            SetTextColor(_localPlayerColor);
         }
 
         private void SetTextColor(Color color)
