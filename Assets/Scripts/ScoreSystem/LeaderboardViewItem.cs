@@ -19,7 +19,7 @@ namespace ScoreSystem
 
         public void UpdateName()
         {
-            _nameText.text = Player.GetName();
+            _nameText.text = Player.Name.Get();
         }
 
         public void Init(Player player)

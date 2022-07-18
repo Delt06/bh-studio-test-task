@@ -40,7 +40,7 @@ namespace Networking
                     _playerNamesByConnectionId.TryGetValue(player.ConnectionToClient.connectionId, out var storedName)
                         ? storedName
                         : NameUtils.DefaultName;
-                player.SetName(playerName);
+                player.Name.Set(playerName);
             }
 
             PlayersChanged?.Invoke();

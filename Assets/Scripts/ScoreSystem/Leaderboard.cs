@@ -18,7 +18,7 @@ namespace ScoreSystem
             if (Players.Contains(player)) return;
             Players.Add(player);
             player.Score.ValueChanged += OnPlayerChanged;
-            player.NameChanged += OnPlayerChanged;
+            player.Name.Changed += OnPlayerChanged;
             Changed?.Invoke();
         }
 
@@ -27,7 +27,7 @@ namespace ScoreSystem
             if (!Players.Contains(player)) return;
             Players.Remove(player);
             player.Score.ValueChanged -= OnPlayerChanged;
-            player.NameChanged -= OnPlayerChanged;
+            player.Name.Changed -= OnPlayerChanged;
             Changed?.Invoke();
         }
 
@@ -47,7 +47,7 @@ namespace ScoreSystem
             {
                 if (player.Score.Value < _scoreThreshold) continue;
 
-                _game.OnWon(player.GetName());
+                _game.OnWon(player.Name.Get());
                 break;
             }
         }
