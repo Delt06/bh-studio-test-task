@@ -15,6 +15,7 @@ namespace Animations
         [ClientCallback]
         private void Update()
         {
+            if (!isLocalPlayer) return;
             var isRunning = _movement.CurrentSpeedXZ >= _minSpeed;
             _animator.SetBool(IsRunningId, isRunning);
         }
