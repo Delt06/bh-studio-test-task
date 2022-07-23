@@ -1,6 +1,5 @@
-# BH Studio Test Task
+# Mirror Third Person Game
 
-Name: Vladislav Kantaev  
 Time spent: ~10 hours
 
 > Made with Unity 2020.3.34f1
